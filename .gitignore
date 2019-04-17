@@ -1,0 +1,11 @@
+# Not upload notebook checkopoints
+*.ipynb_checkpoints
+
+# Not upload v-env
+v-env/
+
+# Not upload keras model
+*.h5
+
+# Not upload MACOS file
+.DS_Store

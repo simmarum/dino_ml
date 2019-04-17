@@ -1,0 +1,2 @@
+. ./v-env/bin/activate
+jupyter notebook
