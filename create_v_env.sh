@@ -16,7 +16,8 @@ numpy==1.16.2 \
 image==1.5.27 \
 sklearn==0.0 \
 keras==2.2.4 \
-tensorflow==1.13.1
+tensorflow==1.13.1 \
+pyvirtualdisplay==0.2.1
 
 cp ./special_files/tensorflow_backend.py ./v-env/lib/python3.6/site-packages/keras/backend
 cp ./special_files/training_arrays.py ./v-env/lib/python3.6/site-packages/keras/engine

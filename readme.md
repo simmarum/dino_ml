@@ -9,3 +9,26 @@ To run code in this repo please follow this steps:
 5. Run **jupyter notebook**: `bash ./run_dino`
 6. Choose proper notebook with version of dino
     - dino_neural_network.ipynb
+<<<<<<< HEAD
+=======
+
+## Run on remote server
+1. Copy repo to remote server and create virtual environment there
+2. Activate v-env
+3. Run jupyter `jupyter notebook --no-browser --port=8889`
+4. Local on your machine run port forwarding: `ssh -N -f -L localhost:8889:localhost:8889 user@remote_ip`
+    - after work kill jupyter notebook on server
+    - kill open port locally `sudo netstat -lpn |grep :YYYY` remember `PID` and do `kill <PID>`
+5. If something not work
+    - issue with `Xvfb`
+        - on **CentOS** run `sudo yum search xvfb` and then install proper package
+        - `sudo yum install python-xvfbwrapper.noarch`
+    - issue with `chromedriver`
+        - check name of `chromedriver` in code (Linux or MAC)
+    - issue with `chrome`
+        - you must install chrome on your machine
+        - see tutorials in web
+
+### Useful commands
+`rsync -azh --del --progress --cvs-exclude ./ user@remote_ip:~/dino`
+>>>>>>> Add virtual display and small tut in readme
