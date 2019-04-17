@@ -9,8 +9,6 @@ To run code in this repo please follow this steps:
 5. Run **jupyter notebook**: `bash ./run_dino`
 6. Choose proper notebook with version of dino
     - dino_neural_network.ipynb
-<<<<<<< HEAD
-=======
 
 ## Run on remote server
 1. Copy repo to remote server and create virtual environment there
@@ -31,4 +29,4 @@ To run code in this repo please follow this steps:
 
 ### Useful commands
 `rsync -azh --del --progress --cvs-exclude ./ user@remote_ip:~/dino`
->>>>>>> Add virtual display and small tut in readme
+
