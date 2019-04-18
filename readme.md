@@ -16,7 +16,7 @@ To run code in this repo please follow this steps:
 3. Run jupyter `jupyter notebook --no-browser --port=8889`
 4. Local on your machine run port forwarding: `ssh -N -f -L localhost:8889:localhost:8889 user@remote_ip`
     - after work kill jupyter notebook on server
-    - kill open port locally `sudo netstat -lpn |grep :YYYY` remember `PID` and do `kill <PID>`
+    - kill open port locally `sudo lsof -nPi -sTCP:LISTEN | grep -E '(PID|8889)'` remember `PID` and do `kill <PID>`
 5. If something not work
     - issue with `Xvfb`
         - on **CentOS** run `sudo yum search xvfb` and then install proper package
