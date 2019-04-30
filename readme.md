@@ -26,6 +26,9 @@ To run code in this repo please follow this steps:
     - issue with `chrome`
         - you must install chrome on your machine
         - see tutorials in web
+6. If you want see chrome by debug port run another port forwarding on local machine
+    - `ssh -N -f -L localhost:9222:localhost:9222 user@remote_ip`
+    - Remember to kill open port!
 
 ### Useful commands
 `rsync -azh --del --progress --cvs-exclude ./ user@remote_ip:~/dino`
