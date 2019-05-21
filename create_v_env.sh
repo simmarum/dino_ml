@@ -9,12 +9,12 @@ cd $SCRIPTPATH
 rm -rf ./v-env
 virtualenv -p python3.6 v-env \
 || \
-python3.6 -m pip3 install --user virtualenv
+python3.6 -m pip install --user virtualenv
 
 . ./v-env/bin/activate
 
-pip3 install --upgrade pip
-pip3 install --compile \
+pip install --upgrade pip
+pip install --compile \
 jupyter==1.0.0 \
 selenium==3.141.0 \
 mss==4.0.2 \

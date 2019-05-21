@@ -7,7 +7,6 @@ To run code in this repo please follow this steps:
 3. Go to repo: `cd dino_ml`
 4. Run code with `bash run_dino.sh remote|local no_env|env jupyter|script screen|no_screen`
     - `remote` run program on remote machine from config (file `env.env`)
-        - file `env.env` must be copied from file `env.env.example` and fill with data
         - you should obtain here also special `token` for jupyter site
         - log to remote machine type `jupyter notebook list` and choose proper `token`
         - second tab/window in browser reload when you run `main()` in jupyter or wait when python script run itself
@@ -18,12 +17,13 @@ To run code in this repo please follow this steps:
     - `script` run program as python script created from jupyter notebook
     - `screen` create virtual screen/display (for example when machine have no monitor)
     - `no_screen` do not create virtual screen/display
-5. In most case you will be used these:
-- `bash run_dino.sh local no_env jupyter no_screen`
-- `bash run_dino.sh remote no_env jupyter screen`
-- `bash run_dino.sh remote no_env script screen`
-6. Program run in `tmux` sessions so **remember to kill sessions** when end work!
-7. If you run remotely remember that bash script create `ssh connection` like these:
+5. File `env.env` must be copied from file `env.env.example` and fill with data
+6. In most case you will be used these:
+    - `bash run_dino.sh local no_env jupyter no_screen`
+    - `bash run_dino.sh remote no_env jupyter screen`
+    - `bash run_dino.sh remote no_env script screen`
+7. Program run in `tmux` sessions so **remember to kill sessions** when end work!
+8. If you run remotely remember that bash script create `ssh connection` like these:
     - `ssh -N -f -L localhost:XXXX:localhost:XXXX server_username@server_ip` so please kill this connection when end work
 
 ## Run on remote server
