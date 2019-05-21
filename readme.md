@@ -37,6 +37,11 @@ To run code in this repo please follow this steps:
 
 ## Some issues
 1. If something not work
+    - issue with `virtualenv`
+        - `virtualenv` install locally in `~/.local/bin` so you probably must add this path to `$PATH` variable
+        - edit `~/.bashrc` file or other similar and add at the end of file new line with
+            `export PATH="$PATH:$HOME/.local/bin"`
+        - save file and restart terminal or type `source ~/.bashrc` (or other similar file)
     - issue with `Xvfb`
         - on **CentOS** run `sudo yum search xvfb` and then install proper package
         - `sudo yum install python-xvfbwrapper.noarch`
