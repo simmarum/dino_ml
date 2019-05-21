@@ -100,7 +100,7 @@ if [[ $1 = "local" ]]; then
     fi
 elif [[ $1 = "remote" ]]; then
     local_run=false
-    rsync -v -v -azh --progress --cvs-exclude --exclude 'v-env*' --exclude '.git*' ./ $server_username@$server_ip:$server_path
+    rsync -v -v -azh --progress --cvs-exclude --exclude 'v-env*' --exclude '.git*' --exclude '.ipynb_checkpoints*' ./ $server_username@$server_ip:$server_path
 
     ssh $server_username@$server_ip "cd $server_path && bash $0 local $2 $3 $4"
     IFS=\  read r_jupyter_port r_debugger_port <<< $(scp $server_username@$server_ip:$server_path/$PORT_FILE /dev/stdout)
