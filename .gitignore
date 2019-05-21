@@ -7,5 +7,12 @@ v-env/
 # Not upload keras model
 *.h5
 
+# Not upload temp file
+port.txt
+results.txt
+
 # Not upload MACOS file
 .DS_Store
+
+# Not uplaod personal data
+env.env
