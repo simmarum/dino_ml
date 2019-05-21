@@ -9,7 +9,7 @@ cd $SCRIPTPATH
 rm -rf ./v-env
 virtualenv -p python3.6 v-env \
 || \
-python3.6 -m pip install --user virtualenv
+python3.6 -m pip install --user virtualenv && virtualenv -p python3.6 v-env
 
 . ./v-env/bin/activate
 
