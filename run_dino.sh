@@ -100,7 +100,7 @@ if [[ $1 = "local" ]]; then
     fi
 elif [[ $1 = "remote" ]]; then
     local_run=false
-    rsync -v -v -azh --progress --cvs-exclude --exclude 'v-env*' --exclude '.git*' --exclude '.ipynb_checkpoints*' ./ $server_username@$server_ip:$server_path
+    rsync -azh --progress --cvs-exclude --exclude 'v-env*' --exclude '.git*' --exclude '.ipynb_checkpoints*' ./ $server_username@$server_ip:$server_path
 
     ssh $server_username@$server_ip "cd $server_path && bash $0 local $2 $3 $4"
     IFS=\  read r_jupyter_port r_debugger_port <<< $(scp $server_username@$server_ip:$server_path/$PORT_FILE /dev/stdout)
@@ -109,8 +109,11 @@ elif [[ $1 = "remote" ]]; then
     fi
     ssh -N -f -L localhost:$r_debugger_port:localhost:$r_debugger_port $server_username@$server_ip
     sleep 3
-    open http://localhost:$r_jupyter_port
     open http://localhost:$r_debugger_port
+    if [[ $3 = "jupyter" ]]; then
+        open http://localhost:$r_jupyter_port
+    fi
+
 else
     echo $msg
     exit -1
