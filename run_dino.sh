@@ -22,7 +22,7 @@ msg="Call script > bash $0 remote|local no_env|env jupyter|script screen|no_scre
 # Check 3 arg
 if [[ $3 != "jupyter" ]] && [[ $3 != "script" ]]; then
     echo $msg
-    exit -1
+    exit 3
 fi
 
 # Check if screen (display) is necessary
@@ -32,17 +32,18 @@ elif [[ $4 = "no_screen" ]]; then
     screen=false
 else
     echo $msg
-    exit -1
+    exit 4
 fi
 
 # Remove old env if necessary
-if [[ $2 = "env" ]]; then
+source deactivate
+if [[ $2 = "env" ]] && [[ $1 = "local" ]]; then
     rm -rf $VENV_DIR
-elif [[ $2 = "no_env" ]]; then
+elif [[ $2 = "no_env" ]] || [[ $2 = "env" ]]; then
     true
 else
     echo $msg
-    exit -1
+    exit 2
 fi
 
 # Activate env (create if required)
@@ -71,10 +72,13 @@ if [[ $1 = "local" ]]; then
     local_run=true
     IFS=\  read jupyter_port debugger_port <<< $(<$PORT_FILE)
     if [[ $3 = "jupyter" ]]; then
-        tmux new -d -s dino_$jupyter_port
-        tmux send -t dino_$jupyter_port . Space deactivate ENTER
-        tmux send -t dino_$jupyter_port . Space $VENV_FILE ENTER
-        tmux send -t dino_$jupyter_port \
+        # Generate config jupyter with password
+        yes n | jupyter notebook --generate-config
+        sed -i -e "s/#c\.NotebookApp\.password = ''/c\.NotebookApp\.password = u'sha1:d756d116ec3b:b7ac1a0acced30b2f3c65a035683f5e964b04538'/" ~/.jupyter/jupyter_notebook_config.py
+        tmux new -d -s dino_$jupyter_port_$debugger_port
+        tmux send -t dino_$jupyter_port_$debugger_port . Space deactivate ENTER
+        tmux send -t dino_$jupyter_port_$debugger_port . Space $VENV_FILE ENTER
+        tmux send -t dino_$jupyter_port_$debugger_port \
             screen=$screen Space \
             jupyter_port=$jupyter_port Space \
             debugger_port=$debugger_port Space \
@@ -85,10 +89,10 @@ if [[ $1 = "local" ]]; then
             $JUPYTER_FILE ENTER
     elif [[ $3 = "script" ]]; then
         jupyter nbconvert --to script $JUPYTER_FILE
-        tmux new -d -s dino_$jupyter_port
-        tmux send -t dino_$jupyter_port . Space deactivate ENTER
-        tmux send -t dino_$jupyter_port . Space $VENV_FILE ENTER
-        tmux send -t dino_$jupyter_port \
+        tmux new -d -s dino_$jupyter_port_$debugger_port
+        tmux send -t dino_$jupyter_port_$debugger_port . Space deactivate ENTER
+        tmux send -t dino_$jupyter_port_$debugger_port . Space $VENV_FILE ENTER
+        tmux send -t dino_$jupyter_port_$debugger_port \
             screen=$screen Space \
             jupyter_port=$jupyter_port Space \
             debugger_port=$debugger_port Space \
@@ -96,7 +100,7 @@ if [[ $1 = "local" ]]; then
             $PYTHON_FILE ENTER
     else
         echo $msg
-        exit -1
+        exit 1
     fi
 elif [[ $1 = "remote" ]]; then
     local_run=false
@@ -116,5 +120,5 @@ elif [[ $1 = "remote" ]]; then
 
 else
     echo $msg
-    exit -1
+    exit 11
 fi

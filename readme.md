@@ -31,7 +31,8 @@ To run code in this repo please follow this steps:
     - kill open port locally `sudo lsof -nPi -sTCP:LISTEN | grep -E '(PID|XXXX)'` remember `PID` and do `kill <PID>`
 2. Kill `tmux sessions` after work
     - type `tmux ls` and kill all session with `dino_xxxxx`
-    - `tmux a -t dino_xxxxx`
+    - `tmux a -t dino_xxxxx` and inside session type `exit`
+    - you can kill session by `tmux kill-session -t dino_xxxx`
     - you can kill all sessions with `tmux kill-server`
 
 

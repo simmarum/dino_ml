@@ -5,6 +5,7 @@ set -e
 SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
 
 cd $SCRIPTPATH
+. deactivate
 
 rm -rf ./v-env
 virtualenv -p python3.6 v-env \
