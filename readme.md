@@ -25,6 +25,10 @@ To run code in this repo please follow this steps:
 7. Program run in `tmux` sessions so **remember to kill sessions** when end work!
 8. If you run remotely remember that bash script create `ssh connection` like these:
     - `ssh -N -f -L localhost:XXXX:localhost:XXXX server_username@server_ip` so please kill this connection when end work
+9. Program want to record screen when run remote so please download `ffmpeg` (https://ffmpeg.org/download.html)
+and put to proper directory `./ffmpeg/ffmpeg_linux/ffmpeg`
+    - please download `ffmpeg` in some zip/tarball package, if you install it into system please do change in code to work with it
+    - or you can find and comment lines in code to not record screen ; )
 
 ## Run on remote server
 1. Kill `ssh connection` after work with remote server
