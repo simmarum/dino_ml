@@ -72,9 +72,11 @@ if [[ $1 = "local" ]]; then
     local_run=true
     IFS=\  read jupyter_port debugger_port <<< $(<$PORT_FILE)
     if [[ $3 = "jupyter" ]]; then
-        # Generate config jupyter with password
-        yes n | jupyter notebook --generate-config
-        sed -i -e "s/#c\.NotebookApp\.password = ''/c\.NotebookApp\.password = u'sha1:d756d116ec3b:b7ac1a0acced30b2f3c65a035683f5e964b04538'/" ~/.jupyter/jupyter_notebook_config.py
+        # ## Generate config jupyter with password
+        # ## Please use this when you want to set your own password for jupyter:
+        # ## https://jupyter-notebook.readthedocs.io/en/stable/public_server.html#preparing-a-hashed-password
+        # yes n | jupyter notebook --generate-config
+        # sed -i -e "s/#c\.NotebookApp\.password = ''/c\.NotebookApp\.password = u'sha1:d756d116ec3b:b7ac1a0acced30b2f3c65a035683f5e964b04538'/" ~/.jupyter/jupyter_notebook_config.py
         tmux new -d -s dino_$jupyter_port_$debugger_port
         tmux send -t dino_$jupyter_port_$debugger_port . Space deactivate ENTER
         tmux send -t dino_$jupyter_port_$debugger_port . Space $VENV_FILE ENTER

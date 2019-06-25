@@ -3,7 +3,7 @@
 To run code in this repo please follow this steps:
 1. Obtain `python` in version 3+ (code tested on **3.6**)
 1. Obtain `tmux` to detach sessions
-2. Clone this repo: `git clone ssh://git@bitbucket.pearson.com/~matekrus/dino_ml.git`
+2. Clone this repo: `git clone https://github.com/simmarum/dino_ml.git`
 3. Go to repo: `cd dino_ml`
 4. Run code with `bash run_dino.sh remote|local no_env|env jupyter|script screen|no_screen`
     - `remote` run program on remote machine from config (file `env.env`)
